@@ -1,20 +1,19 @@
 package roo.root.android_node_cli
 
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import roo.root.android_node_cli.LandingFragment
+// Import other fragments if needed
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> LandingFragment()
-           // 1 -> SkillsFragment()
-         //  2 -> TechnoverseFragment()
-         //   3 -> ContactFragment()
-          //  4 -> RecentWorksFragment()
-          //  5 -> SupportFragment()
-            else -> LandingFragment()
+            0 -> LandingFragment() // LandingFragment as the first tab
+            // Add other fragments for other tabs if needed
+            else -> LandingFragment() // Default to LandingFragment
         }
     }
 
@@ -24,12 +23,12 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "Gitemijeff Devs"
-            1 -> "Skills"
-            2 -> "Technoverse"
-            3 -> "Contact"
-            4 -> "Recent Works"
-            5 -> "Support the Developer"
+            0 -> "Gitemijeff Devs" // Tab title for LandingFragment
+            1 -> "Skills" // Tab title for SkillsFragment
+            2 -> "Technoverse" // Tab title for TechnoverseFragment
+            3 -> "Contact" // Tab title for ContactFragment
+            4 -> "Recent Works" // Tab title for RecentWorksFragment
+            5 -> "Support the Developer" // Tab title for SupportFragment
             else -> ""
         }
     }
