@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:orientation="horizontal">
+
+    <!-- Tip Card 50 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 100 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 200 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 500 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 1000 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 2000 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 3000 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 5000 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+
+    <!-- Tip Card 10000 -->
+    <include layout="@layout/tip_card_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_columnWeight="1" />
+</GridLayout>
