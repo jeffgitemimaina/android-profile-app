@@ -1,38 +1,52 @@
 package roo.root.android_node_cli.Adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import androidx.navigation.NavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import roo.root.android_node_cli.Data.Service
-import roo.root.android_node_cli.R
+import roo.root.android_node_cli.LandingFragmentDirections
+import roo.root.android_node_cli.databinding.ServiceCardLayoutBinding
 
+class ServiceAdapter(private val navController: NavController) : ListAdapter<Service, ServiceAdapter.ViewHolder>(ServiceDiffCallback()) {
 
-class ServiceAdapter(private val services: List<Service>) : RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder>() {
-
-    inner class ServiceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTextView: TextView = itemView.findViewById(R.id.serviceTitleTextView)
-        val descriptionTextView: TextView = itemView.findViewById(R.id.serviceDescriptionTextView)
-        val viewProjectsButton: Button = itemView.findViewById(R.id.viewProjectsButton)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.service_card_layout, parent, false)
-        return ServiceViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ServiceViewHolder, position: Int) {
-        val service = services[position]
-        holder.titleTextView.text = service.title
-        holder.descriptionTextView.text = service.description
-        holder.viewProjectsButton.setOnClickListener {
-            // Handle button click here
+    inner class ViewHolder(val binding: ServiceCardLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+        val serviceTitleTextView = binding.serviceTitleTextView
+        val serviceDescriptionTextView = binding.serviceDescriptionTextView
+        init {
+            binding.root.setOnClickListener {
+                val service = getItem(adapterPosition)
+                val action = LandingFragmentDirections.actionLandingFragmentToMainActivity2()
+                navController.navigate(action)
+            }
         }
     }
 
-    override fun getItemCount(): Int {
-        return services.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding = ServiceCardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val service = getItem(position)
+        holder.apply {
+            serviceTitleTextView.text = service.name
+            serviceDescriptionTextView.text = service.description
+        }
+    }
+}
+
+class ServiceDiffCallback : DiffUtil.ItemCallback<Service>() {
+
+    override fun areItemsTheSame(oldItem: Service, newItem: Service): Boolean {
+        // Implement logic to check if items are the same.
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
+        // Implement logic to check if item contents are the same.
+        return oldItem == newItem
     }
 }
