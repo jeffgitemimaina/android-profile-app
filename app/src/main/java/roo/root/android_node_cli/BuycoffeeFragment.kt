@@ -16,14 +16,35 @@ class BuyCoffeeFragment : Fragment() {
     private lateinit var spinner: Spinner
     private lateinit var phoneNumberEditText: EditText
     private lateinit var payButton: Button
+    private lateinit var tipAmountTextView: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize views
         spinner = view.findViewById(R.id.tipSelectionSpinner)
+        tipAmountTextView = view.findViewById(R.id.tipAmountTextView)
         phoneNumberEditText = view.findViewById(R.id.phoneNumberEditText)
         payButton = view.findViewById(R.id.payButton)
+
+        // Initialize Spinner
+        val myTipSizeArray = arrayOf("1", "2", "3", "4", "5")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, myTipSizeArray)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        // Set onItemSelectedListener for the spinner
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // Update tip amount text view when spinner item is selected
+                val tipAmount = myTipSizeArray[position].toInt() * 50 // Assuming each tip card value is 50
+                tipAmountTextView.text = "Tip Amount: $tipAmount" // Update text view
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
 
         // Set onClickListener for the Pay button
         payButton.setOnClickListener {
@@ -61,7 +82,22 @@ class BuyCoffeeFragment : Fragment() {
     }
 
     private fun performSTKPush() {
-        val amount = spinner.selectedItem.toString().toInt() * 50 // Assuming each tip card value is 50
+        var totalAmount = 0 // Initialize total amount to zero
+
+        // Calculate total amount for all tip cards
+        for (i in 1..9) { // Assuming there are 9 tip cards
+            val tipCardLayoutId = resources.getIdentifier("tipCardLayout$i", "id", activity?.packageName)
+            val tipCardLayout = view?.findViewById<LinearLayout>(tipCardLayoutId)
+            val tipAmountTextView = tipCardLayout?.findViewById<TextView>(R.id.tipAmountTextView)
+
+            // Extract tip amount from tip card text view
+            val tipAmountText = tipAmountTextView?.text.toString().replace(" KES", "")
+            val tipAmount = tipAmountText.toIntOrNull() ?: 0 // Convert to integer or default to zero if conversion fails
+
+            // Add tip amount to total
+            totalAmount += tipAmount
+        }
+
         val phoneNumber = phoneNumberEditText.text.toString().trim()
 
         // Construct JSON body for STK push
@@ -70,7 +106,7 @@ class BuyCoffeeFragment : Fragment() {
             put("password", "{{mpesa_password}}")
             put("Timestamp", "20160216165627")
             put("transactionType", "CustomerPayBillOnline")
-            put("amount", amount)
+            put("amount", totalAmount)
             put("partyA", phoneNumber)
             put("partyB", "600000")
         }
@@ -90,6 +126,7 @@ class BuyCoffeeFragment : Fragment() {
             }
         }
     }
+
 
     private fun makeSTKPush(jsonBody: JSONObject): Response {
         // Implement your logic here to make STK push using Daraja API

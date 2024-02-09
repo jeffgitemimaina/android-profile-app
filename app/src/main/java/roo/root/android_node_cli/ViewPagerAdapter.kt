@@ -12,8 +12,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> LandingFragment() // LandingFragment as the first tab
-            5-> BuycoffeeFragment()
-            // Add other fragments for other tabs if needed
+            5 -> BuyCoffeeFragment()
             else -> LandingFragment() // Default to LandingFragment
         }
     }

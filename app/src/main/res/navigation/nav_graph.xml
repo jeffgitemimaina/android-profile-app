@@ -11,6 +11,21 @@
         <action
             android:id="@+id/action_landingFragment_to_mainActivity2"
             app:destination="@+id/landingFragment" />
+        <action
+            android:id="@+id/action_landingFragment_to_buyCoffeeFragment"
+            app:destination="@id/buyCoffeeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyCoffeeFragment"
+        android:name="roo.root.android_node_cli.BuyCoffeeFragment"
+        android:label="BuyCoffeeFragment" >
+
+    <action
+            android:id="@+id/action_buyCoffeeFragment_to_landingFragment"
+            app:destination="@id/landingFragment" />
+        <action
+            android:id="@+id/action_buyCoffeeFragment_to_landingFragment2"
+            app:destination="@id/landingFragment" />
     </fragment>
 
 
