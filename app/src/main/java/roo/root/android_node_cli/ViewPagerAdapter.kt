@@ -12,8 +12,11 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> LandingFragment() // LandingFragment as the first tab
-            5-> BuycoffeeFragment()
-            // Add other fragments for other tabs if needed
+            1->LandingFragment()
+            2-> ContactFragment()
+            3-> ContactFragment()
+            4 -> BuyCoffeeFragment()
+            5 -> BuyCoffeeFragment()
             else -> LandingFragment() // Default to LandingFragment
         }
     }
@@ -29,7 +32,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
             2 -> "Technoverse" // Tab title for TechnoverseFragment
             3 -> "Contact" // Tab title for ContactFragment
             4 -> "Recent Works" // Tab title for RecentWorksFragment
-            5 -> "Support the Developer" // Tab title for SupportFragment
+            5 -> "coffee" // Tab title for SupportFragment
             else -> ""
         }
     }
