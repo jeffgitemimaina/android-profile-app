@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
     tools:context=".ContactFragment">
 
     <RelativeLayout
         android:id="@+id/fragmentContainerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#808080"
-        android:clipToOutline="true">
+        android:layout_height="wrap_content"
+        android:background="#D4FFFFFF"
+        android:layout_marginTop="60dp"
+        android:clipToOutline="true"
+        android:layout_gravity="top"
+        tools:ignore="UselessParent">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="?attr/colorPrimary" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFirstName"
             android:layout_width="174dp"
             android:layout_height="40dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="200dp"
-        android:background="@drawable/textview_background"
-        android:hint="First Name"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/black" />
-
+            android:layout_centerVertical="true"
+            android:background="@drawable/textview_background"
+            android:hint="@string/first_name"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/black" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSecondName"
@@ -32,19 +43,32 @@
             android:layout_height="40dp"
             android:layout_below="@id/etFirstName"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/textview_background"
-            android:hint="Second Name"
+            android:hint="@string/second_name"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/black" />
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="174dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/etSecondName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/textview_background"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/black" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="174dp"
             android:layout_height="40dp"
-            android:layout_below="@+id/etSecondName"
+            android:layout_below="@id/etPhoneNumber"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:background="@drawable/textview_background"
@@ -55,38 +79,32 @@
             android:textColorHint="@color/black" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPhoneNumber"
+            android:id="@+id/etBranch"
             android:layout_width="174dp"
             android:layout_height="40dp"
             android:layout_below="@id/etEmail"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/textview_background"
-            android:hint="Phone Number"
-            android:inputType="phone"
+            android:hint="@string/branch"
+            android:inputType="text"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/black" />
-
-
-
-
-
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
             android:layout_width="174dp"
             android:layout_height="40dp"
-            android:layout_below="@id/etPhoneNumber"
+            android:layout_below="@id/etBranch"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/textview_background"
-            android:hint="password"
+            android:hint="@string/password"
             android:inputType="textVisiblePassword"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textColorHint="@color/black" />
-
 
         <Button
             android:id="@+id/btnRegister"
@@ -97,11 +115,22 @@
             android:layout_marginTop="32dp"
             android:background="@drawable/button_background"
             android:gravity="center"
-            android:text="Create Account"
+            android:text="@string/create_account"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="161dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnRegister"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_background"
+            android:gravity="center"
+            android:text="@string/Login"
             android:textAlignment="center"
             android:textColor="@color/white" />
 
     </RelativeLayout>
 
-
-</RelativeLayout>
+</FrameLayout>
