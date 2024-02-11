@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("androidx.navigation.safeargs")
-
+    id ("kotlin-kapt")
 }
 
 android {
@@ -54,6 +54,12 @@ dependencies {
     androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
     implementation( "androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // Add Gson converter for JSON serialization/deserialization
+
+
     // Navigation dependencies
     implementation( "androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
