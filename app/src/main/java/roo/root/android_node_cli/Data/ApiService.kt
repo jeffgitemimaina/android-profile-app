@@ -5,6 +5,11 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("/users")
-    fun sendData(@Body userData: UserData): retrofit2.Call<Void>
+    @POST("submitUserData")
+    fun submitUserData(@Body userData: UserData): Call<YourResponseType>
 }
+
+data class YourResponseType(
+    val success: Boolean,
+    val message: String = "it was successful"
+)

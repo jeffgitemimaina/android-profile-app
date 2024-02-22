@@ -10,6 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"/>
+        app:spanCount="2" />
 
 </RelativeLayout>

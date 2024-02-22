@@ -1,5 +1,6 @@
 package roo.root.android_node_cli.Adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavController
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import roo.root.android_node_cli.Data.Service
 import roo.root.android_node_cli.LandingFragmentDirections
+import roo.root.android_node_cli.SignUpActivity
 import roo.root.android_node_cli.databinding.ServiceCardLayoutBinding
 
 class ServiceAdapter(private val navController: NavController) : ListAdapter<Service, ServiceAdapter.ViewHolder>(ServiceDiffCallback()) {
@@ -15,6 +17,10 @@ class ServiceAdapter(private val navController: NavController) : ListAdapter<Ser
     inner class ViewHolder(val binding: ServiceCardLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         val serviceTitleTextView = binding.serviceTitleTextView
         val serviceDescriptionTextView = binding.serviceDescriptionTextView
+        val viewProjectsButton = binding.viewProjectsButton.apply {
+            val intent = Intent(context,SignUpActivity::class.java)
+            context.startActivity(intent)
+        }
         init {
             binding.root.setOnClickListener {
                 val service = getItem(adapterPosition)

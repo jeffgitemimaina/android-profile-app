@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
-// Import other fragments if needed
+
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -13,26 +13,20 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_
         return when (position) {
             0 -> LandingFragment() // LandingFragment as the first tab
             1->LandingFragment()
-            2-> ContactFragment()
-            3-> ContactFragment()
-            4 -> BuyCoffeeFragment()
-            5 -> BuyCoffeeFragment()
+            2 -> BuyCoffeeFragment()
             else -> LandingFragment() // Default to LandingFragment
         }
     }
 
     override fun getCount(): Int {
-        return 6 // Total number of tabs
+        return 3 // Total number of tabs
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> "Gitemijeff Devs" // Tab title for LandingFragment
             1 -> "Skills" // Tab title for SkillsFragment
-            2 -> "Technoverse" // Tab title for TechnoverseFragment
-            3 -> "Contact" // Tab title for ContactFragment
-            4 -> "Recent Works" // Tab title for RecentWorksFragment
-            5 -> "coffee" // Tab title for SupportFragment
+            2 -> "coffee" // Tab title for SupportFragment
             else -> ""
         }
     }
