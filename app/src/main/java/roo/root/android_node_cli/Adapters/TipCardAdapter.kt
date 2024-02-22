@@ -1,6 +1,8 @@
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -19,23 +21,29 @@ class TipCardAdapter(private val dataList: List<Int>) : RecyclerView.Adapter<Tip
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val amount = dataList[position]
 
-        holder.tipAmountTextView.text = "Tip Amount: $amount"
-
         val spinnerAdapter = ArrayAdapter.createFromResource(holder.itemView.context, R.array.tip_options, android.R.layout.simple_spinner_item)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         holder.tipSelectionSpinner.adapter = spinnerAdapter
 
-        holder.payButton.setOnClickListener {
-            val selectedTip = holder.tipSelectionSpinner.selectedItem.toString().toInt()
-            val totalAmount = amount * selectedTip
-            holder.phoneNumberEditText.error = null
-            if (holder.phoneNumberEditText.text.toString().length < 10) {
-                holder.phoneNumberEditText.error = "Enter a valid Kenyan phone number"
-            } else {
-                // Perform payment logic here
+        holder.tipSelectionSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedTip = holder.tipSelectionSpinner.selectedItem.toString().toInt()
+                val totalAmount = amount * selectedTip
+                holder.tipAmountTextView.text = "Tip Amount: $totalAmount" // Update the text here
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Set selected tip to 1 if nothing is selected
+                holder.tipSelectionSpinner.setSelection(0)
             }
         }
+
+        holder.payButton.setOnClickListener {
+            // Move pay button logic here if needed
+        }
     }
+
+
 
     override fun getItemCount(): Int {
         return dataList.size
