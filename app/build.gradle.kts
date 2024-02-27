@@ -44,6 +44,14 @@ android {
 }
 
 dependencies {
+    val room_version = "2.6.1"
+
+    implementation ("androidx.room:room-runtime:$room_version")
+    annotationProcessor ("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt ("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
     val nav_version = "2.7.7"
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

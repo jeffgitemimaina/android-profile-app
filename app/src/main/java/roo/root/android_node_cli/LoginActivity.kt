@@ -29,9 +29,8 @@ class LoginActivity : AppCompatActivity() {
         val reg = binding.btnRegister
 
             login.setOnClickListener{
-
+                // Authentication
             }
-
 
 
             reg.setOnClickListener {

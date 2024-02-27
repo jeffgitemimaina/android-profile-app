@@ -9,14 +9,21 @@ import roo.root.android_node_cli.Data.ApiService
 import roo.root.android_node_cli.Data.RetrofitClient
 import roo.root.android_node_cli.Data.UserData
 import roo.root.android_node_cli.databinding.ActivitySignUpBinding
+import roo.root.android_node_cli.room.Dao.ClientsDao
+import roo.root.android_node_cli.room.Db.ClientsDb
+import roo.root.android_node_cli.room.Entities.Clients
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
+    private lateinit var clientsDao: ClientsDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root) // Inflate the layout
+        // Initialize the clientsDao
+        val db = ClientsDb.getDatabase(this)
+        clientsDao = db.clientsDao()
 
         binding.btnLogin.setOnClickListener {
             val firstName = binding.etFirstName.text.toString()
@@ -31,9 +38,13 @@ class SignUpActivity : AppCompatActivity() {
 
                     // Launch a coroutine in the global scope for background task
                     val userData = UserData(firstName, secondName, email, phoneNumber, password)
+                    val client = Clients(firstName, secondName, email, phoneNumber, password)
+
                     GlobalScope.launch(Dispatchers.IO) {
+                        clientsDao.insert(client)// saves object to thee room database
                         // Call the function to submit user data using Retrofit
                         submitUserData(userData)
+
                     }
                 } catch (e: NumberFormatException) {
                     Toast.makeText(this@SignUpActivity, "Invalid phone number", Toast.LENGTH_SHORT).show()
